@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+    p {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    ul {
+        font-size: 20px;
+    }
+
+    .container {
+        text-align: center;
+        width: 25%;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        table-layout: fixed ;
+        /* border-collapse: collapse; */
+        width: 25%;
+    }
+    
+    td {
+        /* border: 1px solid #22bb37; */
+        text-align: center;
+        /* padding: 4px; */
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #b5c4bb;
+
+    }
+
+    th {
+        /* border: 1px solid #bd1010; */
+        text-align: center;
+        /* padding: 8px; */
+        background-color: #5ce294;
+
+    }
+
+    input {
+        width: 50%;
+    }
+    </style>
+<title>Title</title>
+</head>
+<body>
+    <div id="app">
+        
+        <div>
+            <h1> Instructions</h1>
+            <p> You will see a prompt below asking you to design an app. Using the interface below, create a schema that represents a complete set of tables you would need in order to create the app. 
+            For each table, enter a set of fields for that table along with their types (int, string). Types may be tables that you've created (student, teacher, assignment).
+            </p>
+            <p>There is no correct answer. An example is shown below:</p>
+
+            <h2> Example Prompt: I want a classroom management app that tracks students, the assignments they've submitted, and the grades they've earned on those assignments. </h2>
+            <p>Schema: This schema shows 4 tables: a student table, a submission table, an assignment table, and a teacher table. </p>
+            <ul>
+                <li> Notice that in the student table, the types of "teacher", "assignments", and "submissions" all reference other objects (tables). </li>
+                <li> In addition, notice that since a student may have multiple assignments, the type of "assignments" is a list. </li>
+            </ul>
+                <!-- image -->
+            <img src="sample.png" alt="classroom management app schema" style="width:75%">
+
+        </div>
+        <p>
+            <h1> Prompt: {{ selectedPrompt }} </h1>
+        </p>
+        <p>
+            <!-- <input id="todo"> -->
+            <button v-on:click="addTable"> Add Table </button>
+        </p>
+
+        <div v-for="(table, tableIndex) in items">
+            <table>
+                <tr> 
+                    <th colspan=2>
+                        <div v-if=table.edit>
+                            <input type="text" v-model="table.tableName" placeholder="students"> </input>
+                            <button v-on:click="deleteTable(tableIndex)">Remove Table</button>
+                        </div>
+                        <div v-else>
+                             {{ table.tableName }}
+                             <button v-on:click="deleteTable(tableIndex)">Remove Table</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr v-for="(field, fieldIndex) in table.fields">
+                    <td v-if=table.edit>
+                        <input type="text" v-model="field.fieldName" placeholder="id"> </input>
+                    </td>
+                    <td v-else style="text-align:left">
+                        {{ field.fieldName }}
+                    </td>
+
+                    <td v-if=table.edit>
+                        <input type="text" v-model="field.fieldType" placeholder="int"> </input>
+                        <button v-on:click="deleteField(tableIndex, fieldIndex)">x</button>
+                    </td>
+                    <td v-else style="text-align:right">
+                        {{ field.fieldType}}
+                    </td>
+                </tr>
+            </table>
+            
+            <div class="container">
+                <button v-if="table.edit" v-on:click="addField(tableIndex)">Add Row</button>
+                <button v-if="!table.edit" v-on:click="editTable(tableIndex)">Edit Table</button>
+                <button v-if="table.edit" v-on:click="saveTable(tableIndex)">Save Table</button>
+            </div>
+           
+            <br>
+            <br>
+
+        </div>
+        <button v-if="!submitted" v-on:click="submitAll()">Submit</button>
+        <div v-if=submitted> Thanks! </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
