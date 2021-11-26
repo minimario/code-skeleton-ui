@@ -54,29 +54,29 @@ var app = new Vue({
             this.items[index].edit = false;
         },
         submitAll() {
-            this.items = [];
-            this.submitted = true;
-
-            prompt = this.selectedPrompt;
-            while (prompt == this.selectedPrompt) {
-                prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
-            }
-            this.selectedPrompt = prompt;
-
-            console.log("hi");
-            let data = {prompt: "barium", "submission": "submit"};
+            let data = {
+                prompt: this.selectedPrompt, 
+                submission: JSON.stringify(this.items)
+            };
 
             fetch("https://skeleton-server.herokuapp.com/submit", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': 'true'
                 },
                 body: JSON.stringify(data)
             }).then(res => {
                 console.log("Request complete! response:", res);
             });
+
+            this.items = [];
+            this.submitted = true;
+            
+            prompt = this.selectedPrompt;
+            while (prompt == this.selectedPrompt) {
+                prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
+            }
+            this.selectedPrompt = prompt;
         },
     }
 })
