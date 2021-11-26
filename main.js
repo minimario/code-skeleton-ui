@@ -18,7 +18,6 @@ var app = new Vue({
     },
     created: function () {
         this.selectedPrompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
-        console.log(selectedPrompt);
     },
     methods: {
         addField(index) {
@@ -63,6 +62,21 @@ var app = new Vue({
                 prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
             }
             this.selectedPrompt = prompt;
+
+            console.log("hi");
+            let data = {prompt: "barium", "submission": "submit"};
+
+            fetch("https://skeleton-server.herokuapp.com/submit", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': 'true'
+                },
+                body: JSON.stringify(data)
+            }).then(res => {
+                console.log("Request complete! response:", res);
+            });
         },
     }
 })
