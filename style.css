@@ -61,16 +61,16 @@ h1 {
 h2 { 
   text-align: center;
 }
-.container {
+/* .container {
   text-align: center;
   width: 25%;
-}
+} */
   
 table {
   font-family: arial, sans-serif;
-  table-layout: fixed;
+  table-layout: auto;
   /* border-collapse: collapse; */
-  width: 25%;
+  width: 100%;
 }
   
 td {
@@ -89,6 +89,7 @@ td {
     text-align: center;
     /* padding: 8px; */
     background-color: hsl(108, 70%, 62%);
+    height: 50px;
   }
   
   input {
@@ -110,6 +111,15 @@ td {
     align-content: center;
   }
 
+  .headerbuttondiv {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    /* align-content: center; */
+  }
+
 
   .tablebuttons{
     /* border: none; */
@@ -123,6 +133,23 @@ td {
     /* position: relative; */
     /* overflow: hidden; */
     /* cursor: pointer; */
+}
+
+.headerbuttons{
+  height: 30px;
+  /* border-radius: 20px; */
+  /* border: none; */
+  /* outline: none; */
+  /* background: #161f9c; */
+  /* color: #fff; */
+  /* font-size: 22px; */
+  /* border-radius: 10px; */
+  text-align: center;
+  /* box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4); */
+  /* position: relative; */
+  /* overflow: hidden; */
+  margin-right: 10px;
+  /* cursor: pointer; */
 }
 
   .addtable{
@@ -158,6 +185,17 @@ td {
 }
 
   .center {
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    width: 30%;
+    background-color: grey;
+    margin-left: 40px;
+    margin-bottom: 100px;
   }
+
+  .table-container {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+

@@ -60,8 +60,15 @@
         <br>
         <p class="buttondiv"> <button v-on:click="addTable" class="addtable"> Add Table </button> </p>
         <br>
-        <div v-for="(table, tableIndex) in items">
-            <table class="center">
+        <div class="table-container">
+        <div v-for="(table, tableIndex) in items" class="center">
+            <div class="headerbuttondiv">
+                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="headerbuttons">Add Row</button>
+                <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="headerbuttons">Edit Table</button>
+                <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="headerbuttons">Save Table</button>
+            </div>
+
+            <table>
                 <tr> 
                     <th colspan=2>
                         <div v-if=table.edit>
@@ -92,16 +99,9 @@
                     </td>
                 </tr>
             </table>
-            
-            <div class="buttondiv">
-                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="tablebuttons">Add Row</button>
-                <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="tablebuttons">Edit Table</button>
-                <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="tablebuttons">Save Table</button>
-            </div>
-           
-            <br>
-            <br>
         </div>
+        </div>
+
         <p class="buttondiv"> <button v-if="!submitted" v-on:click="submitAll()" class="submitbutton">Submit</button> </p>
         <h2 v-if="!submitted"> Remember to hit submit when you're done! </h2>
         <h2 v-if=submitted> Thanks! Please help us out by doing another one! </div>
