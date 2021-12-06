@@ -11,7 +11,7 @@
     />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-<title>Title</title>
+<title>Model Design Experimental Testbed</title>
 </head>
 <body>
     <div id="app">
@@ -28,9 +28,7 @@
                 <p> There is no correct answer. An example is shown below:</p>
             </div>
 
-            
             <hr />
-
             <div class="ExampleInfo">
                 <h2> <u> Example Prompt </u> </h2>
 
@@ -73,11 +71,11 @@
                     <th colspan=2>
                         <div v-if=table.edit>
                             <input type="text" v-model="table.tableName" placeholder="object name (eg, students)"> </input>
-                            <button v-on:click="deleteTable(tableIndex)" class="tablebuttons">Remove Table</button>
+                            <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Table</button>
                         </div>
-                        <div v-else>
+                        <div v-else class="tableheader">
                              {{ table.tableName }}
-                             <button v-on:click="deleteTable(tableIndex)" class="tablebuttons">Remove Table</button>
+                             <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Table</button>
                         </div>
                     </th>
                 </tr>
@@ -86,7 +84,7 @@
                     <td v-if=table.edit>
                         <input type="text" v-model="field.fieldName" placeholder="attribute name"> </input>
                     </td>
-                    <td v-else style="text-align:left">
+                    <td v-else style="text-align:left" class="fieldtext">
                         {{ field.fieldName }}
                     </td>
 
@@ -94,7 +92,7 @@
                         <input type="text" v-model="field.fieldType" placeholder="attribute type"> </input>
                         <button v-on:click="deleteField(tableIndex, fieldIndex)" class="tablebuttons">x</button>
                     </td>
-                    <td v-else style="text-align:right">
+                    <td v-else style="text-align:right" class="fieldtext">
                         {{ field.fieldType}}
                     </td>
                 </tr>
