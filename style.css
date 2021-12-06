@@ -173,6 +173,8 @@ input {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    padding-left: 10px;
+    margin-left: 10px;
 }
 
 .center {
@@ -181,12 +183,13 @@ input {
   width: 30%;
   background-color: #e0dee7;
   margin-left: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .table-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 
 }
 

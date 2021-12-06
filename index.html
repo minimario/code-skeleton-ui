@@ -99,10 +99,11 @@
             </table>
         </div>
         </div>
-
+        <p class="buttondiv"> <button v-if="!submitted" v-on:click="editAll()" class="submitbutton">Edit All</button>  <button v-if="!submitted" v-on:click="saveAll()" class="submitbutton">Save All</button> </p>
+        <br>
         <p class="buttondiv"> <button v-if="!submitted" v-on:click="submitAll()" class="submitbutton">Submit</button> </p>
-        <h2 v-if="!submitted"> Remember to hit submit when you're done! </h2>
-        <h2 v-if=submitted> Thanks! Please help us out by doing another one! </div>
+        <h1 v-if="!submitted"> Remember to save all tables and hit submit when you're done! </h1>
+        <h1 v-if=submitted> Thanks! Please help us out by doing another one! </h1>
 
     </div>
 

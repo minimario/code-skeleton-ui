@@ -19,6 +19,7 @@ var app = new Vue({
     created: function () {
         index = Math.floor(Math.random() * this.prompts.length);
         this.selectedPrompt = this.prompts[index];
+        this.addTable();
     },
     methods: {
         addField(index) {
@@ -54,6 +55,16 @@ var app = new Vue({
         saveTable(index) {
             this.items[index].edit = false;
         },
+        editAll() {
+            for (var index=0; index < this.items.length; index++) {
+                this.items[index].edit = true;
+            }
+        },
+        saveAll() {
+            for (var index=0; index < this.items.length; index++) {
+                this.items[index].edit = false;
+            }
+        },
         submitAll() {
             let data = {
                 prompt: this.selectedPrompt, 
@@ -73,6 +84,7 @@ var app = new Vue({
             });
 
             this.items = [];
+            this.addTable();
             this.submitted = true;
             
             prompt = this.selectedPrompt;
