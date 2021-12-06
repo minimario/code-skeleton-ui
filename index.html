@@ -52,30 +52,25 @@
           <u> Prompt </u>
         </h1>
         <div class="InstructionInfo">
-          <h1 class="PromptText">
-            {{ selectedPrompt }}
-          </h1>
+          <h1 class="PromptText">{{ selectedPrompt }} </h1>
         </div>
 
       <hr />
 
-
-        <p>
-            <!-- <input id="todo"> -->
-            <button v-on:click="addTable"> Add Table </button>
-        </p>
-
+        <br>
+        <p class="buttondiv"> <button v-on:click="addTable" class="addtable"> Add Table </button> </p>
+        <br>
         <div v-for="(table, tableIndex) in items">
-            <table>
+            <table class="center">
                 <tr> 
                     <th colspan=2>
                         <div v-if=table.edit>
-                            <input type="text" v-model="table.tableName" placeholder="object name"> </input>
-                            <button v-on:click="deleteTable(tableIndex)">Remove Table</button>
+                            <input type="text" v-model="table.tableName" placeholder="object name (eg, students)"> </input>
+                            <button v-on:click="deleteTable(tableIndex)" class="tablebuttons">Remove Table</button>
                         </div>
                         <div v-else>
                              {{ table.tableName }}
-                             <button v-on:click="deleteTable(tableIndex)">Remove Table</button>
+                             <button v-on:click="deleteTable(tableIndex)" class="tablebuttons">Remove Table</button>
                         </div>
                     </th>
                 </tr>
@@ -90,7 +85,7 @@
 
                     <td v-if=table.edit>
                         <input type="text" v-model="field.fieldType" placeholder="attribute type"> </input>
-                        <button v-on:click="deleteField(tableIndex, fieldIndex)">x</button>
+                        <button v-on:click="deleteField(tableIndex, fieldIndex)" class="tablebuttons">x</button>
                     </td>
                     <td v-else style="text-align:right">
                         {{ field.fieldType}}
@@ -98,22 +93,20 @@
                 </tr>
             </table>
             
-            <div class="container">
-                <button v-if="table.edit" v-on:click="addField(tableIndex)">Add Row</button>
-                <button v-if="!table.edit" v-on:click="editTable(tableIndex)">Edit Table</button>
-                <button v-if="table.edit" v-on:click="saveTable(tableIndex)">Save Table</button>
+            <div class="buttondiv">
+                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="tablebuttons">Add Row</button>
+                <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="tablebuttons">Edit Table</button>
+                <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="tablebuttons">Save Table</button>
             </div>
            
             <br>
             <br>
-
         </div>
-        <button v-if="!submitted" v-on:click="submitAll()">Submit</button>
-        <div v-if=submitted> Thanks! </div>
+        <p class="buttondiv"> <button v-if="!submitted" v-on:click="submitAll()" class="submitbutton">Submit</button> </p>
+        <h2 v-if="!submitted"> Remember to hit submit when you're done! </h2>
+        <h2 v-if=submitted> Thanks! Please help us out by doing another one! </div>
 
     </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="main.js"></script>
