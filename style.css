@@ -1,0 +1,120 @@
+html {
+    font-family: "Helvetica", sans-serif;
+    background-color: hsl(0, 0%, 100%);
+}
+  
+p {
+    font-size: 20px;
+    color: #1f1f1f;
+}
+  
+ul {
+    font-size: 20px;
+}
+
+ol {
+    font-size: 20px;
+}
+
+
+.InstructionInfo {
+    text-align: center;
+    /* display: flex; */
+    justify-content: center;
+}
+
+.InstructionList {
+    max-width: 1000px;
+    text-align: left;
+    /* display: flex; */
+    justify-content: center;
+}
+  
+hr {
+    border-top: 1px solid #1f1f1f;
+}
+  
+  .ExampleInfo {
+    /* display: flex; */
+    /* flex-direction: row; */
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .ExampleInfoImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .ExampleInfoImage img {
+    height: auto;
+    /* width: 300px; */
+  }
+  h1 {
+    text-align: center;
+  }
+  
+  h2 { 
+    text-align: center;
+  }
+  .container {
+    text-align: center;
+    width: 25%;
+  }
+  
+  table {
+    font-family: arial, sans-serif;
+    table-layout: fixed;
+    /* border-collapse: collapse; */
+    width: 25%;
+  }
+  
+  td {
+    /* border: 1px solid #22bb37; */
+    text-align: center;
+    /* padding: 4px; */
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #b5c4bb;
+  }
+  
+  th {
+    /* border: 1px solid #bd1010; */
+    text-align: center;
+    /* padding: 8px; */
+    background-color: #5ce294;
+  }
+  
+  input {
+    width: 50%;
+  }
+  .PromptText {
+    font-size: 24px;
+    padding-bottom: 15px;
+  }
+  
+  @media (max-width: 800px) {
+    .ExampleInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .ExampleInfoImage img {
+      padding-bottom: 15px;
+    }
+    li {
+      margin-right: 30px;
+      padding-bottom: 5px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    p {
+      font-size: 13px;
+    }
+  }

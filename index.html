@@ -1,79 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-    p {
-        font-family: "Times New Roman", Times, serif;
-        font-size: 20px;
-        color: #000000;
-    }
-
-    ul {
-        font-size: 20px;
-    }
-
-    .container {
-        text-align: center;
-        width: 25%;
-    }
-
-    table {
-        font-family: arial, sans-serif;
-        table-layout: fixed ;
-        /* border-collapse: collapse; */
-        width: 25%;
-    }
-    
-    td {
-        /* border: 1px solid #22bb37; */
-        text-align: center;
-        /* padding: 4px; */
-        padding-bottom: 10px;
-        padding-top: 10px;
-        padding-left: 5px;
-        padding-right: 5px;
-        background-color: #b5c4bb;
-
-    }
-
-    th {
-        /* border: 1px solid #bd1010; */
-        text-align: center;
-        /* padding: 8px; */
-        background-color: #5ce294;
-
-    }
-
-    input {
-        width: 50%;
-    }
-    </style>
 <title>Title</title>
 </head>
 <body>
     <div id="app">
-        
         <div>
             <h1> Instructions</h1>
-            <p> You will see a prompt below asking you to design an app. Using the interface below, create a schema that represents a complete set of tables you would need in order to create the app. 
-            For each table, enter a set of fields for that table along with their types (int, string). Types may be tables that you've created (student, teacher, assignment).
-            </p>
-            <p>There is no correct answer. An example is shown below:</p>
+            <hr />
+            <div class="InstructionInfo">
+                <p> You will see a prompt below asking you to design an app. Design an object-oriented model as if you were creating the app. </p>
+                <ol>
+                    <li> First, list the objects you would need </li>
+                    <li> For each object, list the attributes (fields) for that object </li>
+                    <li> For each attribute (field), list its type. Types may be primitives (int, string), other objects you've defined, or lists of either. </li>
+                </ol>
+                <p> There is no correct answer. An example is shown below:</p>
+            </div>
 
-            <h2> Example Prompt: I want a classroom management app that tracks students, the assignments they've submitted, and the grades they've earned on those assignments. </h2>
-            <p>Schema: This schema shows 4 tables: a student table, a submission table, an assignment table, and a teacher table. </p>
-            <ul>
-                <li> Notice that in the student table, the types of "teacher", "assignments", and "submissions" all reference other objects (tables). </li>
-                <li> In addition, notice that since a student may have multiple assignments, the type of "assignments" is a list. </li>
-            </ul>
-                <!-- image -->
-            <img src="sample.png" alt="classroom management app schema" style="width:75%">
+            
+            <hr />
 
+            <div class="ExampleInfo">
+                <h2> <u> Example Prompt </u> </h2>
+
+                <h2> I want a classroom management app that tracks students, the assignments they've submitted, and the grades they've earned on those assignments. </h2>
+
+                <p> The following shows one of many possible object-oriented models that matches the above prompt: </p>
+                <ul>
+                    <li> Notice that in the <i>student</i> object, the types of the <i>teacher, assignments, </i> and <i> submissions </i> fields all reference other objects. </li>
+                    <li> In the <i> student </i> object, notice that the type of the <i>assignments</i> field is a list (as students have multiple assignments). </li>
+                </ul>
+              </div>
+              <div class="ExampleInfoImage">
+                  <img src="sample.png" alt="classroom management app schema" style="width:75%">
+            </div>
         </div>
-        <p>
-            <h1> Prompt: {{ selectedPrompt }} </h1>
-        </p>
+
+        <hr />
+        <h1>
+          <u> Prompt </u>
+        </h1>
+        <div class="InstructionInfo">
+          <h1 class="PromptText">
+            {{ selectedPrompt }}
+          </h1>
+        </div>
+
+      <hr />
+
+
         <p>
             <!-- <input id="todo"> -->
             <button v-on:click="addTable"> Add Table </button>
@@ -84,7 +70,7 @@
                 <tr> 
                     <th colspan=2>
                         <div v-if=table.edit>
-                            <input type="text" v-model="table.tableName" placeholder="students"> </input>
+                            <input type="text" v-model="table.tableName" placeholder="object name"> </input>
                             <button v-on:click="deleteTable(tableIndex)">Remove Table</button>
                         </div>
                         <div v-else>
@@ -96,14 +82,14 @@
 
                 <tr v-for="(field, fieldIndex) in table.fields">
                     <td v-if=table.edit>
-                        <input type="text" v-model="field.fieldName" placeholder="id"> </input>
+                        <input type="text" v-model="field.fieldName" placeholder="attribute name"> </input>
                     </td>
                     <td v-else style="text-align:left">
                         {{ field.fieldName }}
                     </td>
 
                     <td v-if=table.edit>
-                        <input type="text" v-model="field.fieldType" placeholder="int"> </input>
+                        <input type="text" v-model="field.fieldType" placeholder="attribute type"> </input>
                         <button v-on:click="deleteField(tableIndex, fieldIndex)">x</button>
                     </td>
                     <td v-else style="text-align:right">
