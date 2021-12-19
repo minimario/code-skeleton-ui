@@ -23,9 +23,9 @@
                 <ol>
                     <li> First, list the objects you would need </li>
                     <li> For each object, list the attributes (fields) for that object </li>
-                    <li> For each attribute (field), list its type. Types may be primitives (int, string), other objects you've defined, or lists of either. </li>
+                    <li> For each attribute (field), list its type. Types may be primitives (int, boolean, float, string, datetime), other objects you've defined, or lists of either. </li>
                 </ol>
-                <p> There is no correct answer. An example is shown below:</p>
+                <p> Note that you do not need to list the methods of each object. There is no correct answer. An example is shown below:</p>
             </div>
 
             <hr />
@@ -56,14 +56,14 @@
       <hr />
 
         <br>
-        <p class="buttondiv"> <button v-on:click="addTable" class="addtable"> Add Table </button> </p>
+        <p class="buttondiv"> <button v-on:click="addTable" class="addtable"> Add Object </button> </p>
         <br>
         <div class="table-container">
         <div v-for="(table, tableIndex) in items" class="center">
             <div class="headerbuttondiv">
-                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="headerbuttons">Add Row</button>
-                <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="headerbuttons">Edit Table</button>
-                <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="headerbuttons">Save Table</button>
+                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="headerbuttons">Add Row (Attribute)</button>
+                <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="headerbuttons">Edit Object</button>
+                <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="headerbuttons">Save Object</button>
             </div>
 
             <table>
@@ -71,11 +71,11 @@
                     <th colspan=2>
                         <div v-if=table.edit>
                             <input type="text" v-model="table.tableName" placeholder="object name (eg, students)"> </input>
-                            <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Table</button>
+                            <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Object</button>
                         </div>
                         <div v-else class="tableheader">
                              {{ table.tableName }}
-                             <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Table</button>
+                             <button v-on:click="deleteTable(tableIndex)" class="removetable">Remove Object</button>
                         </div>
                     </th>
                 </tr>
@@ -102,7 +102,7 @@
         <p class="buttondiv"> <button v-if="!submitted" v-on:click="editAll()" class="submitbutton">Edit All</button>  <button v-if="!submitted" v-on:click="saveAll()" class="submitbutton">Save All</button> </p>
         <br>
         <p class="buttondiv"> <button v-if="!submitted" v-on:click="submitAll()" class="submitbutton">Submit</button> </p>
-        <h1 v-if="!submitted"> Remember to save all tables and hit submit when you're done! </h1>
+        <h1 v-if="!submitted"> Remember to save all objects and hit submit when you're done! </h1>
         <h1 v-if=submitted> Thanks! Please help us out by doing another one! </h1>
 
     </div>
