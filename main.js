@@ -17,6 +17,8 @@ var app = new Vue({
         selectedPrompt: null,
     },
     created: function () {
+        fetch("https://skeleton-server.herokuapp.com");
+
         index = Math.floor(Math.random() * this.prompts.length);
         this.selectedPrompt = this.prompts[index];
         this.addTable();
