@@ -49,6 +49,9 @@ hr {
   justify-content: center;
   align-content: center;
 }
+.centered {
+  text-align: center;
+}
 .ExampleInfoImage img {
   height: auto;
   /* width: 300px; */
