@@ -37,6 +37,14 @@ var app = new Vue({
         deleteField(index, fieldIndex) {
             this.items[index].fields.splice(fieldIndex, 1);
         },
+        addMethod(index) {
+            this.items[index].methods.push({
+                methodName: "",
+            });
+        },
+        deleteMethod(index, methodIndex) {
+            this.items[index].methods.splice(methodIndex, 1);
+        },
         addTable() {
             this.submitted = false;
             this.items.push({
@@ -44,6 +52,9 @@ var app = new Vue({
                 fields: [{
                     fieldName: "",
                     fieldType: "",
+                }],
+                methods: [{
+                    methodName: "",
                 }],
                 edit: true,
             });

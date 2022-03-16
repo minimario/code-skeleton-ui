@@ -22,10 +22,11 @@
                 <p> You will see a prompt below asking you to design an app. Design an object-oriented model as if you were creating the app. </p>
                 <ol>
                     <li> First, list the objects you would need </li>
-                    <li> For each object, list the attributes (fields) for that object </li>
+                    <li> For each object, list the attributes (fields) and methods for that object </li>
                     <li> For each attribute (field), list its type. Types may be primitives (int, boolean, float, string, datetime), other objects you've defined, or lists of either. </li>
+                    <li> For each method, provide its name and parameters. </li>
                 </ol>
-                <p> Note that you do not need to list the methods of each object. There is no correct answer. An example is shown below:</p>
+                <p> An example is shown below:</p>
             </div>
 
             <hr />
@@ -38,10 +39,11 @@
                 <ul>
                     <li> Notice that in the <i>student</i> object, the types of the <i>teacher, assignments, </i> and <i> submissions </i> fields all reference other objects. </li>
                     <li> In the <i> student </i> object, notice that the type of the <i>assignments</i> field is a list (as students have multiple assignments). </li>
+                    <li> For the methods, you do not need to provide the return type or argument types.</li>
                 </ul>
               </div>
               <div class="ExampleInfoImage">
-                  <img src="sample.png" alt="classroom management app schema" style="width:75%">
+                  <img src="sample_tables.png" alt="classroom management app schema" style="width:75%">
             </div>
         </div>
 
@@ -61,7 +63,8 @@
         <div class="table-container">
         <div v-for="(table, tableIndex) in items" class="center">
             <div class="headerbuttondiv">
-                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="headerbuttons">Add Row (Attribute)</button>
+                <button v-if="table.edit" v-on:click="addField(tableIndex)" class="headerbuttons">Add Attribute</button>
+                <button v-if="table.edit" v-on:click="addMethod(tableIndex)" class="headerbuttons">Add Method</button>
                 <button v-if="!table.edit" v-on:click="editTable(tableIndex)" class="headerbuttons">Edit Object</button>
                 <button v-if="table.edit" v-on:click="saveTable(tableIndex)" class="headerbuttons">Save Object</button>
             </div>
@@ -80,7 +83,7 @@
                     </th>
                 </tr>
 
-                <tr v-for="(field, fieldIndex) in table.fields">
+                <tr v-for="(field, fieldIndex) in table.fields" class="fieldRow">
                     <td v-if=table.edit>
                         <input type="text" v-model="field.fieldName" placeholder="attribute name"> </input>
                     </td>
@@ -94,6 +97,16 @@
                     </td>
                     <td v-else style="text-align:right" class="fieldtext">
                         {{ field.fieldType}}
+                    </td>
+                </tr>
+
+                <tr v-for="(method, methodIndex) in table.methods" class="methodRow">
+                    <td v-if=table.edit colspan=2>
+                        <input type="text" v-model="method.methodName" placeholder="method">
+                        <button v-on:click="deleteMethod(tableIndex, methodIndex)" class="tablebuttons">x</button>
+                    </td>
+                    <td v-else class="fieldtext" colspan=2 style="text-align: left;">
+                        {{ method.methodName }}
                     </td>
                 </tr>
             </table>
